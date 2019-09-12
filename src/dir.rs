@@ -479,8 +479,7 @@ fn _rename_flags(old_dir: &Dir, old: &CStr, new_dir: &Dir, new: &CStr,
     -> io::Result<()>
 {
     unsafe {
-        let res = libc::syscall(
-            libc::SYS_renameat2,
+        let res = libc::renameat2(
             old_dir.0, old.as_ptr(),
             new_dir.0, new.as_ptr(), flags);
         if res < 0 {
