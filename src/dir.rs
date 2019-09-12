@@ -401,7 +401,7 @@ impl Dir {
 
 /// Rename (move) a file between directories
 ///
-/// Files must be on a single filesystem anyway. This funtion does **not**
+/// Files must be on a single filesystem anyway. This function does **not**
 /// fallback to copying if needed.
 pub fn rename<P, R>(old_dir: &Dir, old: P, new_dir: &Dir, new: R)
     -> io::Result<()>
@@ -458,13 +458,13 @@ fn _hardlink(old_dir: &Dir, old: &CStr, new_dir: &Dir, new: &CStr,
 
 /// Rename (move) a file between directories with flags
 ///
-/// Files must be on a single filesystem anyway. This funtion does **not**
+/// Files must be on a single filesystem anyway. This function does **not**
 /// fallback to copying if needed.
 ///
 /// Only supported on Linux.
 #[cfg(target_os="linux")]
 pub fn rename_flags<P, R>(old_dir: &Dir, old: P, new_dir: &Dir, new: R,
-    flags: libc::c_int)
+    flags: libc::c_uint)
     -> io::Result<()>
     where P: AsPath, R: AsPath,
 {
@@ -475,7 +475,7 @@ pub fn rename_flags<P, R>(old_dir: &Dir, old: P, new_dir: &Dir, new: R,
 
 #[cfg(target_os="linux")]
 fn _rename_flags(old_dir: &Dir, old: &CStr, new_dir: &Dir, new: &CStr,
-    flags: libc::c_int)
+    flags: libc::c_uint)
     -> io::Result<()>
 {
     unsafe {
